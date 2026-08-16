@@ -35,8 +35,8 @@ export default function About() {
         </SectionLabel>
       </Reveal>
 
-      <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
-        <Reveal className="lg:col-span-7">
+      <div className="flex flex-col gap-12 lg:flex-row lg:items-stretch">
+        <Reveal className="lg:w-7/12">
           <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
             {site.fullName}
           </h1>
@@ -79,12 +79,12 @@ export default function About() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.08} className="lg:col-span-5">
-          <div className="aspect-[4/5] w-[49%] overflow-hidden rounded-lg border border-border bg-muted">
+        <Reveal delay={0.08} className="lg:w-5/12">
+          <div className="relative aspect-[4/5] w-[70%] overflow-hidden rounded-lg border border-border bg-muted lg:aspect-auto lg:h-full">
             <Image
               src="/images/about/portrait-about.jpg"
               alt={site.fullName}
-              className="h-full w-full"
+              className="absolute inset-0 h-full w-full"
               fittingType="fill"
             />
           </div>
