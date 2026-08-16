@@ -82,7 +82,7 @@ export default function About() {
         <Reveal delay={0.08} className="lg:col-span-5">
           <div className="aspect-[4/5] overflow-hidden rounded-lg border border-border bg-muted">
             <Image
-              src="/images/about/portrait.jpg"
+              src="/images/about/portrait-about.jpg"
               alt={site.fullName}
               className="h-full w-full"
               fittingType="fill"
