@@ -80,7 +80,7 @@ export default function About() {
         </Reveal>
 
         <Reveal delay={0.08} className="lg:col-span-5">
-          <div className="aspect-[4/5] overflow-hidden rounded-lg border border-border bg-muted">
+          <div className="aspect-[4/5] w-[70%] overflow-hidden rounded-lg border border-border bg-muted">
             <Image
               src="/images/about/portrait-about.jpg"
               alt={site.fullName}
