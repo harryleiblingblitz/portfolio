@@ -1,0 +1,31 @@
+{
+  "title": "Cryogenic Fuels Design Engineer, Rolls-Royce",
+  "slug": "rolls-royce-cryogenic-fuels",
+  "short_description": "Designed novel pumping technology for liquid hydrogen applications, including a high-precision test rig built for manufacture and assembly.",
+  "full_description": "Placement-year work at Rolls-Royce designing novel pumping technology for liquid hydrogen fuel systems, using Siemens NX to develop a high-precision test rig from first concept through to a design ready for manufacture and assembly.",
+  "category": "CAD & Mechanical Design",
+  "disciplines": ["Aerospace", "CAD & Mechanical Design", "Research"],
+  "date": "2025-06-16",
+  "year": 2025,
+  "status": "published",
+  "duration": "Placement year",
+  "featured": true,
+  "priority": 110,
+  "hero_image": "/images/rolls-royce-cryogenic-fuels/hero.jpg",
+  "gallery": [
+    "/images/rolls-royce-cryogenic-fuels/gallery-1.jpg",
+    "/images/rolls-royce-cryogenic-fuels/gallery-2.jpg"
+  ],
+  "videos": [],
+  "technologies": ["Siemens NX", "DFMA"],
+  "skills": ["Design for manufacture and assembly", "Precision test-rig design", "Cryogenic systems"],
+  "key_concepts": ["Liquid hydrogen handling", "Pump design", "DFMA"],
+  "motivation": "",
+  "methodology": "Used Siemens NX to design for manufacture and assembly of a high-precision test rig, supporting the development of novel pumping technology for liquid hydrogen applications.",
+  "results": "",
+  "lessons_learned": "",
+  "github_url": "",
+  "external_url": "",
+  "report_url": "",
+  "related_project_ids": ["rolls-royce-aerothermal"]
+}

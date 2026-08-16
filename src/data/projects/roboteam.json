@@ -1,0 +1,32 @@
+{
+  "title": "Engineering Operations Intern, Roboteam",
+  "slug": "roboteam",
+  "short_description": "Testing and maintaining unmanned robots alongside mechanical and software engineers, from camera system assembly to battery QC.",
+  "full_description": "An operations internship at Roboteam working across the build and test side of unmanned ground robots — assembling camera systems, running unit and integration tests, and supporting the QC team on battery packs and hardware configuration.",
+  "category": "Electronics & Hardware",
+  "disciplines": ["Electronics & Hardware", "Research"],
+  "date": "2023-01-01",
+  "year": 2023,
+  "status": "published",
+  "duration": "5 months",
+  "featured": false,
+  "priority": 80,
+  "hero_image": "/images/roboteam/hero.webp",
+  "gallery": [
+    "/images/roboteam/gallery-1.jpg",
+    "/images/roboteam/gallery-2.jpg",
+    "/images/roboteam/gallery-3.png"
+  ],
+  "videos": [],
+  "technologies": [],
+  "skills": ["Unit and integration testing", "Camera system assembly", "Battery QC"],
+  "key_concepts": ["Unmanned ground vehicles", "Hardware integration testing"],
+  "motivation": "",
+  "methodology": "Worked alongside mechanical and software engineers testing and maintaining unmanned robots, assembling camera systems for internal company use with successful unit and integration testing, and working with the QC team testing battery packs and configuring updated hardware chips.",
+  "results": "",
+  "lessons_learned": "",
+  "github_url": "",
+  "external_url": "",
+  "report_url": "",
+  "related_project_ids": []
+}

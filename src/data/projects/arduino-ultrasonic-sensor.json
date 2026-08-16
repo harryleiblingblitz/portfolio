@@ -1,0 +1,32 @@
+{
+  "title": "Ultrasonic Sensor Characterisation & Reversing Alarm",
+  "slug": "arduino-ultrasonic-sensor",
+  "short_description": "Characterising the noise, range and beam angle of an HC-SR04 ultrasonic sensor in MATLAB, then applying it to a simulated car reversing alarm.",
+  "full_description": "A coursework study characterising the real-world performance of the low-cost HC-SR04 ultrasonic sensor against its datasheet, then applying the sensor to a practical proximity-warning application: a simulated car reversing alarm with real-time data smoothing and a MATLAB GUI.",
+  "category": "Control Systems",
+  "disciplines": ["Electronics & Hardware", "Software Engineering", "Research"],
+  "date": "2024-01-15",
+  "year": 2024,
+  "status": "published",
+  "duration": "N/A",
+  "featured": false,
+  "priority": 75,
+  "hero_image": "/images/arduino-ultrasonic-sensor/hero.jpeg",
+  "gallery": [
+    "/images/arduino-ultrasonic-sensor/angle-test-alt.jpeg",
+    "/images/arduino-ultrasonic-sensor/beam-angle-diagram.png",
+    "/images/arduino-ultrasonic-sensor/noise-comparison.png"
+  ],
+  "videos": [],
+  "technologies": ["Arduino", "MATLAB", "HC-SR04"],
+  "skills": ["Sensor characterisation", "Data smoothing", "Linear regression", "GUI development"],
+  "key_concepts": ["Noise analysis", "Sensor dead zones", "Beam angle", "Real-time data filtering"],
+  "motivation": "The HC-SR04 is a low-budget ultrasonic sensor widely used in hobbyist and prototype systems, but its real-world accuracy, range limits and beam angle aren't always intuitive from the datasheet alone. The goal was to characterise it properly, then prove it out in a realistic application.",
+  "methodology": "Noise characteristics were measured across a range of distances using 500-sample datasets, smoothed with a conv() moving-average filter and fitted with a linear regression model (fitlm()) to validate accuracy against manually measured distances. Minimum and maximum detection range were found by moving a barrier until the sensor stopped registering, repeated five times per condition, and the sensor's field of view was mapped by sliding a barrier along lines at known distances and using trigonometry to calculate the cutoff angle. Finally, the sensor was wired to an LED through a breadboard and driven by MATLAB to simulate a car reversing alarm, with blink rate tied to measured distance and a GUI toggle for real-time smoothing.",
+  "results": "The sensor showed increasing noise at greater distances but high accuracy at short range (0.200m measured vs 0.2m true distance). Measured max/min range averaged 4.03m and 0.022m against a 4m/0.02m datasheet spec, and measured beam angle converged toward the datasheet's 30° as distance increased (35.2° at 0.2m, down to 30.3° at 0.6m). The reversing-alarm simulation successfully varied LED blink rate with distance, holding the LED solid below 0.2m to mimic a critical-proximity alarm.",
+  "lessons_learned": "Beam-angle accuracy was worse at close range than far range, the opposite of what might be assumed for a proximity sensor — a reminder to characterise sensors across their full operating envelope rather than assuming datasheet figures hold uniformly. Reducing the sensor's dead zones further would need either a sensor array with overlapping beams or beamforming, both of which trade off field of view for accuracy.",
+  "github_url": "",
+  "external_url": "",
+  "report_url": "",
+  "related_project_ids": ["position-control-system"]
+}

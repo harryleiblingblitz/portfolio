@@ -1,0 +1,32 @@
+{
+  "title": "Accessible Garden Weeding Tool",
+  "slug": "accessible-garden-tool",
+  "short_description": "An inclusive-design telescoping weeding tool for elderly and mobility-impaired gardeners, taken from market research through to a manufacturable design.",
+  "full_description": "A team inclusive-design project (coursework code PD-77) to design a device enabling people with limited mobility and dexterity to remove garden weeds across different soil types without bending, kneeling, or high grip force — covering user research, concept generation, materials selection and a lifecycle/manufacturing analysis.",
+  "category": "CAD & Mechanical Design",
+  "disciplines": ["CAD & Mechanical Design", "Research"],
+  "date": "2025-01-14",
+  "year": 2025,
+  "status": "published",
+  "duration": "3 weeks",
+  "featured": false,
+  "priority": 90,
+  "hero_image": "/images/accessible-garden-tool/hero.png",
+  "gallery": [
+    "/images/accessible-garden-tool/gallery-1.jpg",
+    "/images/accessible-garden-tool/gallery-2.png",
+    "/images/accessible-garden-tool/gallery-3.png"
+  ],
+  "videos": [],
+  "technologies": ["Ashby materials charts", "CES EduPack (Eco Audit)"],
+  "skills": ["User-centred design", "Concept generation & selection", "Materials selection", "Lifecycle assessment"],
+  "key_concepts": ["Inclusive design", "Ergonomics", "Pugh matrix", "Design for manufacture", "Design for disassembly"],
+  "motivation": "The brief was to design a device enabling individuals with limited mobility and dexterity to effectively remove garden weeds across different soil types. Market research showed 75+ year-olds are among the highest spenders on garden equipment, and that 54% of state-pension-age adults report mobility issues — making this a genuinely underserved user group rather than a generic gardening tool.",
+  "methodology": "The team benchmarked four existing products, built a formal requirements list (performance, ergonomics, safety, force specs), and each member generated an individual concept — I designed the 'Adjustable Weed Grabber' concept, a spring-loaded, telescoping-shaft tool with an ergonomic rubber-grip handle. Concepts were scored in a weighted Pugh-style evaluation matrix, and the final hybrid design combined my telescoping shaft and grip handle with a multi-functional tool head and clip-on wheels from the other concepts. Materials were shortlisted using Ashby charts against density, strength, cost and recyclability, and injection moulding was selected over compression moulding after a cycle-time and tooling-cost comparison. A lifecycle eco-audit quantified energy and CO2e by phase.",
+  "results": "The final design telescopes from 0.3m to 0.9m with magnetic-seal locking joints, a quick-release stainless-steel tool-attachment mechanism, a two-fork weed-gripping head plus an alternate foot-pedal deep-root tool, and optional clip-on wheels. The eco-audit found the material phase dominates lifecycle energy and CO2e, with manufacturing at ~22%/32% and recycling offsetting roughly 47%/39% of energy/CO2e respectively.",
+  "lessons_learned": "",
+  "github_url": "",
+  "external_url": "",
+  "report_url": "",
+  "related_project_ids": []
+}

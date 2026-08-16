@@ -1,0 +1,33 @@
+{
+  "title": "Automated Battery Module Assembly Machine",
+  "slug": "battery-assembly-machine",
+  "short_description": "A machine designed to automatically assemble electric-hovercraft battery modules, cutting cycle time and hitting every PDS target under a £20,000 budget.",
+  "full_description": "A group machine-design project developing an industrial machine to automatically assemble battery modules for an electric hovercraft, replacing manual assembly. The brief covered the full design pipeline — concept generation, first-principles component sizing, control logic, risk analysis and plant layout — against a formal product design specification.",
+  "category": "CAD & Mechanical Design",
+  "disciplines": ["CAD & Mechanical Design", "Simulation", "Software Engineering"],
+  "date": "2025-02-04",
+  "year": 2025,
+  "status": "published",
+  "duration": "N/A",
+  "featured": false,
+  "priority": 95,
+  "hero_image": "/images/battery-assembly-machine/hero.png",
+  "gallery": [
+    "/images/battery-assembly-machine/gallery-1.png",
+    "/images/battery-assembly-machine/gallery-2.png",
+    "/images/battery-assembly-machine/gallery-3.png",
+    "/images/battery-assembly-machine/gallery-4.png"
+  ],
+  "videos": [],
+  "technologies": ["Siemens SIMATIC S7-1500 PLC", "Granta EduPack"],
+  "skills": ["Motor and actuator sizing", "Structural verification", "Risk analysis (FMECA)", "Plant layout"],
+  "key_concepts": ["Product design specification (PDS)", "Pugh matrix", "FMECA", "Fault tree analysis", "Capacity planning"],
+  "motivation": "The brief, set by the department, was to automate assembly of battery modules for electric hovercrafts against a formal product design specification: 18 modules/hour throughput, a 10N ± 2N cell-insertion force, under 10 tonnes and 15m² footprint, and compliance with ISO 12100, ISO 9001, the Machinery Directive and UK HSE codes.",
+  "methodology": "Four individual concept sketches were scored in a Pugh matrix against performance, physical, economic, environmental and safety criteria, then merged into a final design combining the strongest elements of each — including vacuum-suction pick-and-place and dual-sided copper-coil application. Component sizing was done from first principles: motor torque/power for five conveyors, actuator forces for carrier ejection and a 350N cell-insertion press, and vacuum pump pressure for pick-up, with beam bending and Euler buckling checks on the support rollers under load. A Siemens SIMATIC S7-1500 PLC was selected for centralised control, with process sequencing validated via storyboarding and a UML activity diagram. Risk was assessed with a fault tree for cell pick-and-place and an FMECA for the copper adhesive sub-assembly, and the manufacturing side covered a 16-department plant layout with material-flow analysis and a capacity-expansion strategy. I was responsible for the pneumatic supply and quality/verification testing sections of the specification.",
+  "results": "The final design achieved a 107.2s single-piece cycle time (~87s average with parallel processing), a 12m² footprint and 5,200kg mass — both under the PDS limits — at a total cost of £17,587, £2,413 under budget. Projected output was 894 modules/day at 90% efficiency, around 320,000 modules/year. Structural checks on the support rollers showed 6.41MPa bending stress and a 3.48MN buckling load, both comfortably under the steel's 250MPa yield limit.",
+  "lessons_learned": "",
+  "github_url": "",
+  "external_url": "",
+  "report_url": "",
+  "related_project_ids": ["sub-assembly-shaft-design"]
+}
