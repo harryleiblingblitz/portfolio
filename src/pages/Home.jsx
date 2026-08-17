@@ -13,8 +13,8 @@ import { Reveal } from '@/components/Reveal';
 export default function Home() {
   const { data: projects } = useProjects();
   const playIntro = useIntroPlayback();
-  const featured = projects.filter((p) => p.featured).slice(0, 3);
-  const featuredList = featured.length ? featured : projects.slice(0, 3);
+  const featured = projects.filter((p) => p.featured).slice(0, 4);
+  const featuredList = featured.length ? featured : projects.slice(0, 4);
 
   return (
     <div>

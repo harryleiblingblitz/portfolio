@@ -3,7 +3,7 @@
   "slug": "rolls-royce-aerothermal",
   "short_description": "A CFD verification and validation study on novel HP turbine cooling geometry, prompting a company re-assessment of current CFD methodology.",
   "full_description": "A computational verification and validation study on novel high-pressure turbine cooling geometry at Rolls-Royce, using STARCCM+ to run test cases and MATLAB to post-process results against experimental boundary conditions.",
-  "category": "Aerodynamics",
+  "category": "Aerodynamics & Simulation",
   "disciplines": ["Aerospace", "Aerodynamics", "Simulation"],
   "date": "2025-06-01",
   "year": 2025,

@@ -9,7 +9,7 @@
   "year": 2025,
   "status": "published",
   "duration": "N/A",
-  "featured": false,
+  "featured": true,
   "priority": 95,
   "hero_image": "/images/battery-assembly-machine/hero.png",
   "gallery": [

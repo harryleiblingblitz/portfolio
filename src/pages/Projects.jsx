@@ -10,16 +10,17 @@ export default function Projects() {
   const { data: projects } = useProjects();
   const [view, setView] = useState('timeline');
   const [activeFilter, setActiveFilter] = useState('All');
+  const [sortOrder, setSortOrder] = useState('oldest');
 
   const categories = useMemo(() => {
     const set = new Set(projects.map((p) => p.category).filter(Boolean));
     return ['All', ...Array.from(set)];
   }, [projects]);
 
-  const chronological = useMemo(
-    () => [...projects].sort((a, b) => new Date(a.date) - new Date(b.date)),
-    [projects]
-  );
+  const chronological = useMemo(() => {
+    const sorted = [...projects].sort((a, b) => new Date(a.date) - new Date(b.date));
+    return sortOrder === 'newest' ? sorted.reverse() : sorted;
+  }, [projects, sortOrder]);
 
   const filteredGrid = useMemo(() => {
     if (activeFilter === 'All') return chronological;
@@ -36,7 +37,7 @@ export default function Projects() {
 
       <Reveal delay={0.05}>
         <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
-          Explore the work I've done.
+          Explore my work
         </h1>
       </Reveal>
 
@@ -63,6 +64,31 @@ export default function Projects() {
             Grid
           </button>
         </div>
+
+        {view === 'timeline' && (
+          <div className="inline-flex rounded-full border border-border p-1">
+            <button
+              type="button"
+              onClick={() => setSortOrder('oldest')}
+              className={cn(
+                'rounded-full px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-300',
+                sortOrder === 'oldest' ? 'bg-foreground text-background' : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              Oldest first
+            </button>
+            <button
+              type="button"
+              onClick={() => setSortOrder('newest')}
+              className={cn(
+                'rounded-full px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-300',
+                sortOrder === 'newest' ? 'bg-foreground text-background' : 'text-muted-foreground hover:text-foreground'
+              )}
+            >
+              Newest first
+            </button>
+          </div>
+        )}
 
         {view === 'grid' && (
           <select
