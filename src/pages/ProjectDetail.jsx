@@ -48,7 +48,6 @@ export default function ProjectDetail() {
   const specs = [
     { label: 'Category', value: project.category },
     { label: 'Date', value: project.date },
-    { label: 'Duration', value: project.duration },
     { label: 'Disciplines', value: (project.disciplines ?? []).join(', ') },
     { label: 'Tools', value: (project.technologies ?? []).join(', ') },
   ].filter((s) => s.value);
