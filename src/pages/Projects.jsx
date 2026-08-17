@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useProjects } from '@/hooks/useProjects';
-import { FlightDeckExplorer } from '@/components/FlightDeckExplorer';
+import { RadarExplorer } from '@/components/RadarExplorer';
 import { ProjectCard } from '@/components/ProjectCard';
 import { SectionLabel } from '@/components/SectionLabel';
 import { Reveal } from '@/components/Reveal';
@@ -107,7 +107,7 @@ export default function Projects() {
 
       <div className="mt-16">
         {view === 'timeline' ? (
-          <FlightDeckExplorer projects={chronological} />
+          <RadarExplorer projects={chronological} />
         ) : filteredGrid.length === 0 ? (
           <p className="py-24 text-center text-muted-foreground">No projects in this category yet.</p>
         ) : (
