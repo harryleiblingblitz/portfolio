@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 
 const SWEEP_SECONDS = 10;
 const RING_RADII = [46, 31, 16];
+const SPOKE_ANGLES = [0, 45, 90, 135, 180, 225, 270, 315];
 const COMPASS_TICKS = [
   { angle: 0, label: '000' },
   { angle: 90, label: '090' },
@@ -14,12 +15,22 @@ const COMPASS_TICKS = [
   { angle: 270, label: '270' },
 ];
 const MINOR_TICKS = [45, 135, 225, 315];
+const BLIP_RADIUS_MIN = 13;
+const BLIP_RADIUS_MAX = 44;
 
 function polarToPercent(angleDeg, radiusPercent) {
   const rad = (angleDeg * Math.PI) / 180;
   return {
     left: `${50 + radiusPercent * Math.sin(rad)}%`,
     top: `${50 - radiusPercent * Math.cos(rad)}%`,
+  };
+}
+
+function polarToXY(angleDeg, radiusPercent) {
+  const rad = (angleDeg * Math.PI) / 180;
+  return {
+    x: 50 + radiusPercent * Math.sin(rad),
+    y: 50 - radiusPercent * Math.cos(rad),
   };
 }
 
@@ -92,6 +103,9 @@ export function RadarExplorer({ projects }) {
   }
 
   const project = projects[index];
+  const newestFirst = count > 1 && new Date(projects[0].date) > new Date(projects[count - 1].date);
+  const centreLabel = newestFirst ? 'newest' : 'earliest';
+  const rimLabel = newestFirst ? 'earliest' : 'newest';
 
   return (
     <div className="grid gap-12 pb-8 lg:grid-cols-12 lg:items-center lg:gap-10">
@@ -109,6 +123,23 @@ export function RadarExplorer({ projects }) {
               }}
             />
           ))}
+
+          <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" aria-hidden="true">
+            {SPOKE_ANGLES.map((angle) => {
+              const { x, y } = polarToXY(angle, 46);
+              return (
+                <line
+                  key={angle}
+                  x1="50"
+                  y1="50"
+                  x2={x}
+                  y2={y}
+                  className="stroke-border/40"
+                  strokeWidth="0.3"
+                />
+              );
+            })}
+          </svg>
 
           <div className="absolute inset-0 overflow-hidden rounded-full">
             <div
@@ -144,11 +175,18 @@ export function RadarExplorer({ projects }) {
             );
           })}
 
-          <span className="absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent" />
+          <span
+            className={cn(
+              'absolute left-1/2 top-1/2 h-1.5 w-1.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent',
+              !reducedMotion && 'animate-pulse'
+            )}
+          />
 
           {projects.map((p, i) => {
             const angle = (i / count) * 360;
-            const pos = polarToPercent(angle, 38);
+            const radius =
+              count > 1 ? BLIP_RADIUS_MIN + (i / (count - 1)) * (BLIP_RADIUS_MAX - BLIP_RADIUS_MIN) : 30;
+            const pos = polarToPercent(angle, radius);
             const active = i === index;
             return (
               <motion.button
@@ -159,7 +197,7 @@ export function RadarExplorer({ projects }) {
                 onClick={() => goTo(i)}
                 aria-label={`View ${p.title}`}
                 aria-current={active}
-                className="group absolute flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
+                className="group absolute z-10 flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center"
                 style={pos}
               >
                 {active && (
@@ -179,9 +217,23 @@ export function RadarExplorer({ projects }) {
                   )}
                   style={!active && !reducedMotion ? { animationDelay: `${(angle / 360) * SWEEP_SECONDS}s` } : undefined}
                 />
+                {!active && (
+                  <span className="pointer-events-none absolute left-1/2 top-full z-20 mt-2 -translate-x-1/2 whitespace-nowrap rounded border border-border bg-background/95 px-2 py-1 font-mono text-[10px] text-foreground opacity-0 shadow-sm transition-opacity duration-200 group-hover:opacity-100">
+                    {p.title}
+                  </span>
+                )}
               </motion.button>
             );
           })}
+        </div>
+
+        <div className="mt-6 space-y-1.5 text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">
+            Click a contact, or use <span className="text-foreground">← →</span> to scan
+          </p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground/70">
+            Centre {centreLabel} · Rim {rimLabel}
+          </p>
         </div>
       </div>
 
