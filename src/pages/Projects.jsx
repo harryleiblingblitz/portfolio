@@ -1,10 +1,15 @@
 import { useMemo, useState } from 'react';
 import { useProjects } from '@/hooks/useProjects';
 import { RadarExplorer } from '@/components/RadarExplorer';
+import { CockpitExplorer } from '@/components/CockpitExplorer';
 import { ProjectCard } from '@/components/ProjectCard';
 import { SectionLabel } from '@/components/SectionLabel';
 import { Reveal } from '@/components/Reveal';
 import { cn } from '@/lib/utils';
+
+// Set to 'radar' to instantly revert the timeline view back to the
+// original radar-sweep explorer, no other changes needed.
+const TIMELINE_VARIANT = 'cockpit';
 
 export default function Projects() {
   const { data: projects } = useProjects();
@@ -107,7 +112,11 @@ export default function Projects() {
 
       <div className="mt-16">
         {view === 'timeline' ? (
-          <RadarExplorer projects={chronological} />
+          TIMELINE_VARIANT === 'cockpit' ? (
+            <CockpitExplorer projects={chronological} categories={categories} />
+          ) : (
+            <RadarExplorer projects={chronological} />
+          )
         ) : filteredGrid.length === 0 ? (
           <p className="py-24 text-center text-muted-foreground">No projects in this category yet.</p>
         ) : (
