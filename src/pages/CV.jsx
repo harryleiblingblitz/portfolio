@@ -21,7 +21,17 @@ export default function CV() {
       </Reveal>
 
       <Reveal delay={0.05} className="mt-10 overflow-hidden rounded-lg border border-border">
-        <iframe src={site.cvUrl} title={`${site.fullName} CV`} className="aspect-[1/1.35] w-full" />
+        <img src="/images/cv.png" alt={`${site.fullName} CV`} className="w-full" />
+      </Reveal>
+
+      <Reveal delay={0.08} className="mt-6">
+        <a
+          href={site.cvUrl}
+          download
+          className="inline-flex items-center gap-2 rounded-lg border border-border px-6 py-3 text-sm font-medium hover:border-foreground/30"
+        >
+          Download PDF
+        </a>
       </Reveal>
     </div>
   );
