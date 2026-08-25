@@ -104,14 +104,14 @@ export function ScrollPlaneHero({ children }) {
 
         <motion.div
           style={{ opacity: hintOpacity }}
-          className="pointer-events-none absolute inset-x-0 bottom-8 z-10 flex flex-col items-center gap-2 text-white/70"
+          className="pointer-events-none absolute inset-x-0 bottom-8 z-10 flex flex-col items-center gap-2 text-white/90 drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]"
         >
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em]">Scroll</span>
+          <span className="font-mono text-[11px] uppercase tracking-[0.2em]">Scroll</span>
           <motion.div
             animate={{ y: [0, 6, 0] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <ChevronDown size={16} />
+            <ChevronDown size={18} />
           </motion.div>
         </motion.div>
       </div>
