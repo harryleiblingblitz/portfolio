@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 
 // Set to 'radar' to instantly revert the timeline view back to the
 // original radar-sweep explorer, no other changes needed.
-const TIMELINE_VARIANT = 'cockpit';
+const TIMELINE_VARIANT = 'radar';
 
 export default function Projects() {
   const { data: projects } = useProjects();
