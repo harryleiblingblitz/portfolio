@@ -210,12 +210,32 @@
   animation: radar-ping 10s ease-out infinite;
 }
 
+@keyframes window-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    box-shadow: 0 0 1.5px 0.5px rgba(255, 200, 120, 0.4), 0 0 3px 1px rgba(255, 175, 85, 0.25);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 4px 1.5px rgba(255, 222, 155, 1), 0 0 9px 3px rgba(255, 195, 105, 0.65);
+  }
+}
+
+.animate-window-pulse {
+  animation: window-pulse 2.2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
   .marquee-track {
     animation: none;
+  }
+  .animate-window-pulse {
+    animation: none;
+    opacity: 0.95;
   }
   *,
   *::before,

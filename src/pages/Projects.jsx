@@ -2,30 +2,35 @@ import { useMemo, useState } from 'react';
 import { useProjects } from '@/hooks/useProjects';
 import { RadarExplorer } from '@/components/RadarExplorer';
 import { CockpitExplorer } from '@/components/CockpitExplorer';
+import { CockpitScrollExplorer } from '@/components/CockpitScrollExplorer';
+import { AircraftWindowsExplorer } from '@/components/AircraftWindowsExplorer';
 import { ProjectCard } from '@/components/ProjectCard';
 import { SectionLabel } from '@/components/SectionLabel';
 import { Reveal } from '@/components/Reveal';
 import { cn } from '@/lib/utils';
 
-// Set to 'radar' to instantly revert the timeline view back to the
-// original radar-sweep explorer, no other changes needed.
-const TIMELINE_VARIANT = 'radar';
+// 'radar' = original radar-sweep explorer, 'cockpit' = boxed cockpit
+// photo with a draggable throttle overlay (shelved), 'cockpit-scroll' =
+// full-bleed cockpit with scroll-driven crossfade between projects,
+// 'aircraft-windows' = side-on A350 with lit windows per project (oldest
+// at the tail, newest at the nose). Switch back to 'radar' any time to
+// instantly revert, no other changes needed.
+const TIMELINE_VARIANT = 'aircraft-windows';
 
 export default function Projects() {
   const { data: projects } = useProjects();
-  const [view, setView] = useState('timeline');
+  const [showGrid, setShowGrid] = useState(false);
   const [activeFilter, setActiveFilter] = useState('All');
-  const [sortOrder, setSortOrder] = useState('oldest');
 
   const categories = useMemo(() => {
     const set = new Set(projects.map((p) => p.category).filter(Boolean));
     return ['All', ...Array.from(set)];
   }, [projects]);
 
-  const chronological = useMemo(() => {
-    const sorted = [...projects].sort((a, b) => new Date(a.date) - new Date(b.date));
-    return sortOrder === 'newest' ? sorted.reverse() : sorted;
-  }, [projects, sortOrder]);
+  const chronological = useMemo(
+    () => [...projects].sort((a, b) => new Date(a.date) - new Date(b.date)),
+    [projects]
+  );
 
   const filteredGrid = useMemo(() => {
     if (activeFilter === 'All') return chronological;
@@ -40,80 +45,55 @@ export default function Projects() {
         </SectionLabel>
       </Reveal>
 
-      <Reveal delay={0.05}>
-        <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
-          Explore my work
-        </h1>
-      </Reveal>
+      <Reveal delay={0.05} className="flex flex-wrap items-start justify-between gap-6">
+        <div>
+          <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
+            Explore my work
+          </h1>
+          {!showGrid && (
+            <p className="mt-4 text-balance font-mono text-base uppercase tracking-[0.14em] text-muted-foreground sm:text-lg">
+              Click a lit window to explore a project
+            </p>
+          )}
+        </div>
 
-      <Reveal delay={0.1} className="mt-10 flex flex-wrap items-center gap-3">
-        <div className="inline-flex rounded-full border border-border p-1">
+        <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"
-            onClick={() => setView('timeline')}
+            onClick={() => setShowGrid((prev) => !prev)}
+            aria-pressed={showGrid}
             className={cn(
-              'rounded-full px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-300',
-              view === 'timeline' ? 'bg-foreground text-background' : 'text-muted-foreground hover:text-foreground'
-            )}
-          >
-            Timeline
-          </button>
-          <button
-            type="button"
-            onClick={() => setView('grid')}
-            className={cn(
-              'rounded-full px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-300',
-              view === 'grid' ? 'bg-foreground text-background' : 'text-muted-foreground hover:text-foreground'
+              'rounded-full border border-border px-6 py-2.5 font-mono text-sm uppercase tracking-[0.14em] transition-colors duration-300',
+              showGrid ? 'bg-foreground text-background' : 'text-muted-foreground hover:text-foreground'
             )}
           >
             Grid
           </button>
+
+          {showGrid && (
+            <select
+              value={activeFilter}
+              onChange={(e) => setActiveFilter(e.target.value)}
+              className="rounded-full border border-border bg-background px-6 py-2.5 font-mono text-sm uppercase tracking-[0.14em] text-foreground outline-none focus:border-accent"
+            >
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+          )}
         </div>
-
-        {view === 'timeline' && (
-          <div className="inline-flex rounded-full border border-border p-1">
-            <button
-              type="button"
-              onClick={() => setSortOrder('oldest')}
-              className={cn(
-                'rounded-full px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-300',
-                sortOrder === 'oldest' ? 'bg-foreground text-background' : 'text-muted-foreground hover:text-foreground'
-              )}
-            >
-              Oldest first
-            </button>
-            <button
-              type="button"
-              onClick={() => setSortOrder('newest')}
-              className={cn(
-                'rounded-full px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors duration-300',
-                sortOrder === 'newest' ? 'bg-foreground text-background' : 'text-muted-foreground hover:text-foreground'
-              )}
-            >
-              Newest first
-            </button>
-          </div>
-        )}
-
-        {view === 'grid' && (
-          <select
-            value={activeFilter}
-            onChange={(e) => setActiveFilter(e.target.value)}
-            className="rounded-full border border-border bg-background px-4 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-foreground outline-none focus:border-accent"
-          >
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
-        )}
       </Reveal>
 
       <div className="mt-16">
-        {view === 'timeline' ? (
+        {!showGrid ? (
           TIMELINE_VARIANT === 'cockpit' ? (
             <CockpitExplorer projects={chronological} categories={categories} />
+          ) : TIMELINE_VARIANT === 'cockpit-scroll' ? (
+            <CockpitScrollExplorer projects={chronological} />
+          ) : TIMELINE_VARIANT === 'aircraft-windows' ? (
+            <AircraftWindowsExplorer projects={chronological} />
           ) : (
             <RadarExplorer projects={chronological} />
           )
